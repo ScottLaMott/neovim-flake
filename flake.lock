@@ -489,7 +489,8 @@
         "vim-nix": "vim-nix",
         "vim-startify": "vim-startify",
         "vim-test": "vim-test",
-        "vimagit": "vimagit"
+        "vimagit": "vimagit",
+        "vinegar": "vinegar"
       }
     },
     "telescope-dap": {
@@ -600,6 +601,22 @@
       "original": {
         "owner": "jreybert",
         "repo": "vimagit",
+        "type": "github"
+      }
+    },
+    "vinegar": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1641940049,
+        "narHash": "sha256-rpHVTwXRFfWlBbduJPSqtDjDEQTjwpi6mQ2LQJvRZiA=",
+        "owner": "tpope",
+        "repo": "vim-vinegar",
+        "rev": "bb1bcddf43cfebe05eb565a84ab069b357d0b3d6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "tpope",
+        "repo": "vim-vinegar",
         "type": "github"
       }
     }

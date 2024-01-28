@@ -1,14 +1,15 @@
-{ pkgs, lib, config, ...}:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 with lib;
-with builtins;
-
-let
+with builtins; let
   cfg = config.vim.fuzzyfind.telescope;
 in {
   options.vim.fuzzyfind.telescope = {
     enable = mkEnableOption "Enable telescope";
-
-
   };
 
   config = mkIf cfg.enable {
@@ -17,6 +18,7 @@ in {
       popup-nvim
       plenary-nvim
       fugitive
+      vinegar
     ];
 
     vim.luaConfigRC = ''
@@ -42,7 +44,5 @@ in {
       "<leader>bl" = "<cmd>Telescope buffers<cr>";
       "<leader>bc" = "<cmd>bdelete<cr>";
     };
-
-
   };
 }
