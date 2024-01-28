@@ -16,6 +16,7 @@ in {
       nvim-telescope
       popup-nvim
       plenary-nvim
+      fugitive
     ];
 
     vim.luaConfigRC = ''
