@@ -153,7 +153,7 @@ in {
         },
         filters = {
           dotfiles = ${if cfg.hideDotFiles then "true" else "false"},
-          custom = {".git","node_modules",".cache"}          
+          custom = {".git","node_modules",".cache"}
         },
         git = {
           enable = true,

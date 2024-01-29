@@ -72,14 +72,6 @@
       url = "github:jreybert/vimagit";
       flake = false;
     };
-    fugitive = {
-      url = "github:tpope/vim-fugitive";
-      flake = false;
-    };
-    vinegar = {
-      url = "github:tpope/vim-vinegar";
-      flake = false;
-    };
     nvim-lightbulb = {
       url = "github:kosayoda/nvim-lightbulb";
       flake = false;
@@ -124,6 +116,15 @@
       url = "github:folke/which-key.nvim";
       flake = false;
     };
+    #-- slm / plugins
+    fugitive = {
+      url = "github:tpope/vim-fugitive";
+      flake = false;
+    };
+    vinegar = {
+      url = "github:tpope/vim-vinegar";
+      flake = false;
+    };
   };
 
   outputs = {
@@ -149,8 +150,6 @@
       "nvim-tree-lua"
       "telescope-dap"
       "vimagit"
-      "fugitive"
-      "vinegar"
       "nvim-lightbulb"
       "nvim-treesitter"
       "nvim-treesitter-context"
@@ -162,6 +161,8 @@
       "vim-cursorword"
       "vim-test"
       "nvim-which-key"
+      "fugitive"
+      "vinegar"
     ];
 
     externalBitsOverlay = top: last: {

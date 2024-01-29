@@ -1,8 +1,11 @@
-{ config, lib, pkgs, ...}:
-
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 with lib;
-with builtins;
-let
+with builtins; let
   cfg = config.vim;
 
   wrapLuaConfig = luaConfig: ''
@@ -11,11 +14,12 @@ let
     EOF
   '';
 
-  mkMappingOption = it: mkOption ({
-    default = { };
-    type = with types; attrsOf (nullOr str);
-  } // it);
-
+  mkMappingOption = it:
+    mkOption ({
+        default = {};
+        type = with types; attrsOf (nullOr str);
+      }
+      // it);
 in {
   options.vim = {
     viAlias = mkOption {
@@ -27,7 +31,7 @@ in {
     vimAlias = mkOption {
       description = "Enable vim alias";
       type = types.bool;
-      default = true; 
+      default = true;
     };
 
     configRC = mkOption {
@@ -44,14 +48,14 @@ in {
 
     startPlugins = mkOption {
       description = "List of plugins to startup";
-      default = [ ];
+      default = [];
       type = with types; listOf package;
     };
 
     optPlugins = mkOption {
       description = "List of plugins to optionally load";
-      default = [ ];
-      type =  with types; listOf package;
+      default = [];
+      type = with types; listOf package;
     };
 
     globals = mkOption {
@@ -127,13 +131,17 @@ in {
 
   config = let
     filterNonNull = mappings: filterAttrs (name: value: value != null) mappings;
-    globalsScript = mapAttrsFlatten(name: value: "let g:${name}=${toJSON value}") (filterNonNull cfg.globals);
+    globalsScript = mapAttrsFlatten (name: value: "let g:${name}=${toJSON value}") (filterNonNull cfg.globals);
 
     matchCtrl = it: match "Ctrl-(.)(.*)" it;
-    mapKeybinding = it:
-      let groups = matchCtrl it; in if groups == null then it else "<C-${toUpper (head groups)}>${head (tail groups)}";
-      mapVimBinding = prefix: mappings: mapAttrsFlatten (name: value: "${prefix} ${mapKeybinding name} ${value}") (filterNonNull mappings);
-    
+    mapKeybinding = it: let
+      groups = matchCtrl it;
+    in
+      if groups == null
+      then it
+      else "<C-${toUpper (head groups)}>${head (tail groups)}";
+    mapVimBinding = prefix: mappings: mapAttrsFlatten (name: value: "${prefix} ${mapKeybinding name} ${value}") (filterNonNull mappings);
+
     nmap = mapVimBinding "nmap" config.vim.nmap;
     imap = mapVimBinding "imap" config.vim.imap;
     vmap = mapVimBinding "vmap" config.vim.vmap;
@@ -142,7 +150,7 @@ in {
     cmap = mapVimBinding "cmap" config.vim.cmap;
     omap = mapVimBinding "omap" config.vim.omap;
     tmap = mapVimBinding "tmap" config.vim.tmap;
-    
+
     nnoremap = mapVimBinding "nnoremap" config.vim.nnoremap;
     inoremap = mapVimBinding "inoremap" config.vim.inoremap;
     vnoremap = mapVimBinding "vnoremap" config.vim.vnoremap;
@@ -151,7 +159,6 @@ in {
     cnoremap = mapVimBinding "cnoremap" config.vim.cnoremap;
     onoremap = mapVimBinding "onoremap" config.vim.onoremap;
     tnoremap = mapVimBinding "tnoremap" config.vim.tnoremap;
-
   in {
     vim.configRC = ''
       " Lua config from vim.luaConfigRC
@@ -177,5 +184,4 @@ in {
       ${concatStringsSep "\n" globalsScript}
     '';
   };
-
 }
