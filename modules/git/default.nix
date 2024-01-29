@@ -1,12 +1,15 @@
-{ pkgs, config, lib, ...}:
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 with lib;
-with builtins;
-
-let
+with builtins; let
   cfg = config.vim.git;
 in {
   options.vim.git = {
-    enable =  mkEnableOption "Enable git support"; 
+    enable = mkEnableOption "Enable git support";
     blameLine = mkOption {
       default = true;
       description = "Prints blame info of who edited the line you are on.";
@@ -15,18 +18,21 @@ in {
   };
 
   config = mkIf cfg.enable {
-
     vim.nnoremap = {
       "<leader>gs" = "<cmd>Magit<cr>";
     };
 
-    vim.startPlugins = with pkgs.neovimPlugins; [ 
-      vimagit 
+    vim.startPlugins = with pkgs.neovimPlugins; [
+      vimagit
       fugitive
 
-      (if cfg.blameLine then nvim-blame-line else null)
+      (
+        if cfg.blameLine
+        then nvim-blame-line
+        else null
+      )
     ];
-    
+
     vim.luaConfigRC = ''
       local wk = require("which-key")
 
@@ -38,12 +44,14 @@ in {
       }, { prefix = "<leader>" })
     '';
 
-
     vim.configRC = ''
-      ${if cfg.blameLine then ''
-        autocmd BufEnter * EnableBlameLine
-      '' else ""}
+      ${
+        if cfg.blameLine
+        then ''
+          autocmd BufEnter * EnableBlameLine
+        ''
+        else ""
+      }
     '';
   };
 }
-
