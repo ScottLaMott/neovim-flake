@@ -227,7 +227,7 @@
           vim.lsp.lightbulb = true;
           vim.lsp.variableDebugPreviews = true;
           vim.fuzzyfind.telescope.enable = true;
-          vim.filetree.nvimTreeLua.enable = true;
+          vim.filetree.nvimTreeLua.enable = false;
           vim.git.enable = true;
           vim.formatting.editorConfig.enable = true;
           vim.editor.indentGuide = true;
