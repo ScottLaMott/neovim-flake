@@ -28,6 +28,7 @@ in {
       #(if cfg.colourPreview then vim-hexokinase else null)
 
       nvim-which-key
+      commentary
     ];
 
     vim.nnoremap = {

@@ -125,6 +125,10 @@
       url = "github:tpope/vim-vinegar";
       flake = false;
     };
+    commentary = {
+      url = "github:tpope/vim-commentary";
+      flake = false;
+    };
   };
 
   outputs = {
@@ -162,6 +166,7 @@
       "vim-test"
       "nvim-which-key"
       "fugitive"
+      "commentary"
       "vinegar"
     ];
 

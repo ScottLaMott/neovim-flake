@@ -1,5 +1,21 @@
 {
   "nodes": {
+    "commentary": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1705078171,
+        "narHash": "sha256-kQDHZLyDq9XJsxRzH/E5xDb/6O/T6V/n3a9412ensmQ=",
+        "owner": "tpope",
+        "repo": "vim-commentary",
+        "rev": "f67e3e67ea516755005e6cccb178bc8439c6d402",
+        "type": "github"
+      },
+      "original": {
+        "owner": "tpope",
+        "repo": "vim-commentary",
+        "type": "github"
+      }
+    },
     "completion-nvim": {
       "flake": false,
       "locked": {
@@ -460,6 +476,7 @@
     },
     "root": {
       "inputs": {
+        "commentary": "commentary",
         "completion-nvim": "completion-nvim",
         "editorconfig-vim": "editorconfig-vim",
         "fugitive": "fugitive",
